@@ -1,9 +1,9 @@
-import { LoggerConfig } from './types';
+import { LoggerConfig } from "./types";
 declare class Logger {
     private static instance;
-    private logger;
+    private readonly logger;
     private constructor();
-    init(config: LoggerConfig): void;
+    static init(config?: LoggerConfig): Logger;
     private createLogger;
     static getLogger(): Logger;
     log(level: string, message: string): void;

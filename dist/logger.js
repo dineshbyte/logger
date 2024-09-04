@@ -8,14 +8,18 @@ const winston_1 = __importDefault(require("winston"));
 const types_1 = require("./types");
 const cls_hooked_1 = require("cls-hooked");
 class Logger {
-    constructor() {
-        this.logger = null;
-        // private constructor to prevent instantiation
+    // Private constructor to enforce singleton
+    constructor(config) {
+        this.logger = this.createLogger(config);
     }
-    init(config) {
-        if (!this.logger) {
-            this.logger = this.createLogger(config);
+    static init(config) {
+        if (!Logger.instance) {
+            Logger.instance = new Logger(config);
         }
+        else {
+            Logger.instance.logger.configure({ level: config === null || config === void 0 ? void 0 : config.level });
+        }
+        return Logger.instance;
     }
     createLogger(config) {
         return winston_1.default.createLogger({
@@ -29,22 +33,19 @@ class Logger {
             },
             format: winston_1.default.format.combine(winston_1.default.format.timestamp(), winston_1.default.format.printf(({ level, message, timestamp }) => {
                 var _a;
-                const cid = (_a = (0, cls_hooked_1.getNamespace)('BYTE-LOGGER')) === null || _a === void 0 ? void 0 : _a.get('cid');
+                const cid = (_a = (0, cls_hooked_1.getNamespace)("BYTE-LOGGER")) === null || _a === void 0 ? void 0 : _a.get("cid");
                 return JSON.stringify(Object.assign(Object.assign({}, (cid ? { cid } : {})), { level, message: {
                         log: message,
-                        timestamp
+                        timestamp,
                     } }));
             })),
             transports: [new winston_1.default.transports.Console()],
-            level: config.level || types_1.LogLevel.INFO,
+            level: (config === null || config === void 0 ? void 0 : config.level) || types_1.LogLevel.INFO,
         });
     }
     static getLogger() {
         if (!Logger.instance) {
             Logger.instance = new Logger();
-        }
-        if (!Logger.instance.logger) {
-            throw new Error('Logger is not initialized. Please call logger.init() first.');
         }
         return Logger.instance;
     }
@@ -72,5 +73,5 @@ class Logger {
         this.log(types_1.LogLevel.TEST, message);
     }
 }
-exports.logger = Logger.getLogger();
+exports.logger = Logger.init();
 //# sourceMappingURL=logger.js.map

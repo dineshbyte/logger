@@ -18,7 +18,7 @@ class Logger {
         } else {
             Logger.instance.logger.configure({ level: config?.level})
         }
-        
+
         return Logger.instance;
     }
 
@@ -47,7 +47,7 @@ class Logger {
                 })
             ),
             transports: [new winston.transports.Console()],
-            level: config.level || LogLevel.INFO,
+            level: config?.level || LogLevel.INFO,
         });
     }
 
