@@ -1,7 +1,7 @@
 {
-    "name": "@byte/tracing",
+    "name": "@byte/logger",
     "version": "1.0.0",
-    "description": "A tracing package for Express applications",
+    "description": "A logger package for Express applications",
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
@@ -12,13 +12,12 @@
     "dependencies": {
         "cls-hooked": "^4.2.2",
         "express": "^4.19.2",
-        "uuid": "^10.0.0"
+        "winston": "^3.14.2"
     },
     "devDependencies": {
         "@types/cls-hooked": "^4.3.8",
         "@types/express": "^4.17.21",
         "@types/jest": "^29.5.12",
-        "@types/uuid": "^10.0.0",
         "@typescript-eslint/eslint-plugin": "^8.4.0",
         "@typescript-eslint/parser": "^8.4.0",
         "eslint": "^8.57.0",

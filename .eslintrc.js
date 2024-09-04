@@ -11,7 +11,6 @@ module.exports = {
         'plugin:jest/recommended', // Use recommended Jest rules
     ],
     parserOptions: {
-        project: 'tsconfig.json',
         sourceType: 'module', // Allows using import/export statements
         tsconfigRootDir: __dirname,
     },
