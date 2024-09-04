@@ -33,7 +33,7 @@ class Logger {
             },
             format: winston_1.default.format.combine(winston_1.default.format.timestamp(), winston_1.default.format.printf(({ level, message, timestamp }) => {
                 var _a;
-                const cid = (_a = (0, cls_hooked_1.getNamespace)("BYTE-LOGGER")) === null || _a === void 0 ? void 0 : _a.get("cid");
+                const cid = (_a = (0, cls_hooked_1.getNamespace)("BYTE_LOGGER")) === null || _a === void 0 ? void 0 : _a.get("cid");
                 return JSON.stringify(Object.assign(Object.assign({}, (cid ? { cid } : {})), { level, message: {
                         log: message,
                         timestamp,

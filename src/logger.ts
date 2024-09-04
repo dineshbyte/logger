@@ -35,7 +35,7 @@ class Logger {
             format: winston.format.combine(
                 winston.format.timestamp(),
                 winston.format.printf(({ level, message, timestamp }) => {
-                    const cid = getNamespace("BYTE-LOGGER")?.get("cid");
+                    const cid = getNamespace("BYTE_LOGGER")?.get("cid");
                     return JSON.stringify({
                         ...(cid ? { cid } : {}),
                         level,
