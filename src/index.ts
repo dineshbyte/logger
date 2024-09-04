@@ -1,3 +1,1 @@
-export { logger } from './logger';
-export { requestTrackingMiddleware } from './middleware';
-export type { LoggerConfig } from './types';
+export { requestTracingMiddleware, getCorrelationId } from './tracing';
