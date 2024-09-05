@@ -15,3 +15,4 @@ declare class Logger {
 }
 export declare const logger: Logger;
 export {};
+//# sourceMappingURL=logger.d.ts.map

@@ -9,3 +9,4 @@ export declare enum LogLevel {
     DEBUG = "debug",
     TEST = "test"
 }
+//# sourceMappingURL=types.d.ts.map

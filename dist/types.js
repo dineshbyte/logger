@@ -10,4 +10,3 @@ var LogLevel;
     LogLevel["DEBUG"] = "debug";
     LogLevel["TEST"] = "test";
 })(LogLevel || (exports.LogLevel = LogLevel = {}));
-//# sourceMappingURL=types.js.map

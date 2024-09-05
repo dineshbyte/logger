@@ -67,4 +67,3 @@ class Logger {
     }
 }
 exports.logger = Logger.init();
-//# sourceMappingURL=logger.js.map

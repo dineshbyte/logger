@@ -7,4 +7,3 @@ const getTraceId = () => {
     return session ? session.get('traceId') : undefined;
 };
 exports.getTraceId = getTraceId;
-//# sourceMappingURL=helper.js.map
