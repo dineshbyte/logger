@@ -1,6 +1,6 @@
 import winston from "winston";
 import {LoggerConfig, LogLevel} from "./types";
-import {getNamespace} from "cls-hooked";
+import {getTraceId} from "./helper";
 
 
 class Logger {
@@ -35,7 +35,7 @@ class Logger {
             format: winston.format.combine(
                 winston.format.timestamp(),
                 winston.format.printf(({ level, message, timestamp }) => {
-                    const cid = getNamespace("BYTE_LOGGER")?.get("cid");
+                    const cid = getTraceId();
                     return JSON.stringify({
                         ...(cid ? { cid } : {}),
                         level,
@@ -49,13 +49,6 @@ class Logger {
             transports: [new winston.transports.Console()],
             level: config?.level || LogLevel.INFO,
         });
-    }
-
-    public static getLogger(): Logger {
-        if (!Logger.instance) {
-            Logger.instance = new Logger();
-        }
-        return Logger.instance;
     }
 
     public log(level: string, message: string): void {
