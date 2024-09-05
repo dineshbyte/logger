@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.logger = void 0;
 const winston_1 = __importDefault(require("winston"));
 const types_1 = require("./types");
-const cls_hooked_1 = require("cls-hooked");
+const helper_1 = require("./helper");
 class Logger {
     // Private constructor to enforce singleton
     constructor(config) {
@@ -32,8 +32,7 @@ class Logger {
                 test: 5,
             },
             format: winston_1.default.format.combine(winston_1.default.format.timestamp(), winston_1.default.format.printf(({ level, message, timestamp }) => {
-                var _a;
-                const cid = (_a = (0, cls_hooked_1.getNamespace)("BYTE_LOGGER")) === null || _a === void 0 ? void 0 : _a.get("cid");
+                const cid = (0, helper_1.getTraceId)();
                 return JSON.stringify(Object.assign(Object.assign({}, (cid ? { cid } : {})), { level, message: {
                         log: message,
                         timestamp,
@@ -42,12 +41,6 @@ class Logger {
             transports: [new winston_1.default.transports.Console()],
             level: (config === null || config === void 0 ? void 0 : config.level) || types_1.LogLevel.INFO,
         });
-    }
-    static getLogger() {
-        if (!Logger.instance) {
-            Logger.instance = new Logger();
-        }
-        return Logger.instance;
     }
     log(level, message) {
         if (this.logger) {

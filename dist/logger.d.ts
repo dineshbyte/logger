@@ -5,7 +5,6 @@ declare class Logger {
     private constructor();
     static init(config?: LoggerConfig): Logger;
     private createLogger;
-    static getLogger(): Logger;
     log(level: string, message: string): void;
     critical(message: string): void;
     info(message: string): void;
